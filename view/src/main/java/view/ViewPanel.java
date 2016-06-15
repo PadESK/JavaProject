@@ -1,9 +1,14 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -12,7 +17,7 @@ import javax.swing.JPanel;
  * @author Jean-Aymeric Diet
  */
 class ViewPanel extends JPanel implements Observer {
-
+	
 	/** The view frame. */
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
@@ -57,14 +62,157 @@ class ViewPanel extends JPanel implements Observer {
 		this.repaint();
 	}
 
+	
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
+	
+	
+	
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
+		graphics.setColor(Color.BLACK);
+		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+		//String[]tabmap = this.getViewFrame().getModel().getMessage().split("\n");
+		this.viewFrame.getModel().doTheThing();
+		char[][] tabmap = this.viewFrame.getModel().getTabmap2d();
+		
+		for(int i =0; i<tabmap.length; i++)
+		{
+			for (int j =0; j<tabmap[i].length;j++)
+			{
+				switch (tabmap[i][j]) {
+				case 'N':
+					System.out.print(tabmap[i][j]);
+					/**try {
+						Image img = ImageIO.read(new File("sprite/vertical_bone.png"));
+						graphics.drawImage(img, 32*j, 32*i, this);
+					} catch (IOException e) {
+
+						e.printStackTrace();
+
+					}**/
+					break;
+					
+					case 'B':
+					System.out.print(tabmap[i][j]);
+					try {
+						Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/bone.png"));
+						graphics.drawImage(img, 32*j, 32*i, this);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+					
+					case 'H':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/horizontal_bone.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+						
+					case 'V':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/vertical_bone.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+						
+					case '1':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/monster_1.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+						
+					case '2':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/monster_2.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+						
+					case '3':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/monster_3.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+						
+					case '4':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/monster_4.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+					
+					case 'P':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/purse.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+					
+					case 'S':
+						System.out.print(tabmap[i][j]);
+						try {
+							Image img = ImageIO.read(new File("C:/Users/ASUS/Desktop/Projet Java2/JPU-BlankProject/sprite/lorann_r.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						break;
+					
+					
+					
+					
+					
+				
+				
+					/** remplir switch case **/
+					
+					
+				default :
+					System.out.print(tabmap[i][j]);
+					break;
+				}
+			}
+			System.out.println();
+		}
+		/**tabmap2d[0][0] = tabmap[0].charAt(1) ;
+		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		int x=0;
+		int y=20;
+		char t=tabmap2d[0][0];
+		while(x!=10){
+		graphics.drawChars(null, t, 10, y, y);
+		y=y+20;
+		x++;}**/
+	
+		
 	}
 }
