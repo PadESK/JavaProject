@@ -31,8 +31,8 @@ CREATE
 	DEFINER=`root`@`localhost` 
 	PROCEDURE `MapByID` (IN p_id VARCHAR(2))  
 	READS SQL DATA
-    SQL SECURITY INVOKER
-    BEGIN
+	SQL SECURITY INVOKER
+	BEGIN
 		SELECT * FROM map WHERE id = p_id;
 	END//
 
@@ -41,7 +41,7 @@ CREATE
 	DEFINER=`root`@`localhost` 
 	PROCEDURE MapByKEY (IN p_key VARCHAR(5))  
 	READS SQL DATA
-    SQL SECURITY INVOKER
+	SQL SECURITY INVOKER
 	BEGIN
 		SELECT * FROM jpublankproject2.map where key=p_key
 	END;
@@ -57,8 +57,8 @@ DELIMITER ;
 CREATE TABLE Map (
 	id INT NOT NULL,
 	key INT NOT NULL,
-	mapContentMEDIUMTEXT NOT NULL,
-	PRIMARY KEY (idmap) 
+	mapContent MEDIUMTEXT NOT NULL,
+	PRIMARY KEY (id) 
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Structure de la table PLAYER
@@ -67,7 +67,7 @@ CREATE TABLE Player (
 	idplayer BIGINT NOT NULL,
 	score BIGINT NOT NULL,
 	level BIGINT NOT NULL,
-    PRIMARY KEY (idplayer)
+    	PRIMARY KEY (idplayer)
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Insertion dans la table map
