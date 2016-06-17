@@ -36,15 +36,24 @@ CREATE
 		SELECT * FROM map WHERE id = p_id;
 	END//
 
-
 CREATE 
 	DEFINER=`root`@`localhost` 
 	PROCEDURE MapByKey (IN p_key VARCHAR(5))  
 	READS SQL DATA
 	SQL SECURITY INVOKER
 	BEGIN
-		SELECT * FROM jpublankproject2.map where key=p_key
-	END;
+		SELECT * FROM jpublankproject2.map where key=p_key;
+	END//
+
+CREATE
+	DEFINER= 'root'@'localhost'
+	PROCEDURE InsertScoreByKeymap (IN score INT, key_map VARCHAR(5))  
+	MODIFIES SQL DATA 
+	BEGIN
+		INSERT INTO Map(best_score)
+		WHERE key = key_map
+		VALUES (score);
+	END//
 
 DELIMITER ;
 
@@ -56,20 +65,21 @@ DELIMITER ;
 
 CREATE TABLE Map (
 	id INT NOT NULL,
-	key INT NOT NULL,
-	mapContent MEDIUMTEXT NOT NULL,
+	key VARCHAR(5) NOT NULL,
+	mapContent TEXT NOT NULL,
+	best_score INT,
 	PRIMARY KEY (id) 
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Structure de la table PLAYER
-
+/*
 CREATE TABLE Player (
 	idplayer BIGINT NOT NULL,
 	score BIGINT NOT NULL,
 	level BIGINT NOT NULL,
     	PRIMARY KEY (idplayer)
 	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+*/
 -- Insertion dans la table map
 
 INSERT INTO Map ( idmap, maplevel, File) VALUES
